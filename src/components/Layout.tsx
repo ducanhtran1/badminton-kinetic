@@ -18,7 +18,7 @@ export const BottomNav = () => {
   if (hideNav) return null;
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-white/80 backdrop-blur-md z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(0,87,255,0.05)] md:hidden">
+    <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-white/90 backdrop-blur-md z-50 rounded-t-xl border-t border-slate-200/80 shadow-[0_-8px_24px_rgba(0,57,168,0.06)] md:hidden">
       {navItems.map((item) => {
         const isActive = location.pathname === item.path;
         return (
@@ -28,11 +28,11 @@ export const BottomNav = () => {
             className={cn(
               "flex flex-col items-center justify-center py-2 px-4 transition-all duration-300 ease-out",
               isActive 
-                ? "bg-primary text-white rounded-xl scale-105" 
+                ? "bg-primary text-white rounded-lg scale-105 shadow-md shadow-primary/25" 
                 : "text-slate-500 hover:text-primary"
             )}
           >
-            <item.icon size={20} strokeWidth={isActive ? 3 : 2} />
+            <item.icon size={22} strokeWidth={2.25} className={isActive ? "opacity-100" : "opacity-90"} />
             <span className="font-manrope text-[10px] uppercase tracking-widest mt-1 font-bold">
               {item.label}
             </span>
@@ -52,7 +52,7 @@ export const Header = () => {
   if (isAuth) return null;
 
   return (
-    <header className="fixed top-0 w-full z-50 shadow-sm bg-white/80 backdrop-blur-md">
+    <header className="fixed top-0 w-full z-50 border-b border-slate-200/70 bg-background/90 backdrop-blur-md">
       <div className="flex justify-between items-center px-6 h-16 w-full max-w-screen-xl mx-auto">
         <div className="flex items-center gap-4">
           <button className="text-slate-600 p-2 hover:bg-slate-100 rounded-full transition-colors">

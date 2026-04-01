@@ -7,8 +7,7 @@ import { cn } from "../lib/utils";
 
 export const Home = () => {
   const navigate = useNavigate();
-  const featuredProducts = PRODUCTS.slice(0, 4);
-  const topDeals = PRODUCTS.slice(4, 7);
+  const featuredProducts = PRODUCTS.slice(0, 3);
 
   return (
     <div className="space-y-16 pb-20 overflow-x-hidden">
@@ -35,11 +34,14 @@ export const Home = () => {
               <Zap size={16} className="text-primary" />
               <span className="text-primary font-black text-xs uppercase tracking-widest">New Season Arrival</span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-black font-headline text-white leading-[0.85] tracking-tighter uppercase">
+            <p className="font-headline font-black text-sm md:text-base uppercase tracking-[0.35em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.85),0_0_2px_rgba(0,0,0,0.9)]">
+              SMASH THE LIMITS
+            </p>
+            <h1 className="text-6xl md:text-8xl font-black font-headline text-white leading-[0.85] tracking-tighter uppercase [text-shadow:0_4px_32px_rgba(0,0,0,0.55),0_1px_0_rgba(255,255,255,0.15)]">
               Defy <br />
-              <span className="text-primary">Gravity</span>
+              <span className="text-[#93c5fd] drop-shadow-[0_2px_12px_rgba(0,57,168,0.6)]">Gravity</span>
             </h1>
-            <p className="text-slate-400 text-lg max-w-md font-medium leading-relaxed">
+            <p className="text-slate-300 text-lg max-w-md font-medium leading-relaxed">
               Engineered for the elite. Experience the next generation of aerodynamic performance with the Kinetic Series.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -51,7 +53,7 @@ export const Home = () => {
               </button>
               <button 
                 onClick={() => navigate("/racket-finder")}
-                className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-2xl font-black text-lg hover:bg-white/20 transition-all"
+                className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-xl font-black text-lg min-h-[52px] hover:bg-white/20 transition-all"
               >
                 Find Your Racket
               </button>
@@ -82,7 +84,7 @@ export const Home = () => {
 
       {/* Racket Finder Banner */}
       <section className="max-w-screen-xl mx-auto px-6">
-        <div className="bg-primary rounded-[3rem] p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="bg-primary rounded-2xl md:rounded-3xl p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="space-y-6 relative z-10 text-center md:text-left">
             <h2 className="text-4xl md:text-6xl font-black font-headline text-white leading-none tracking-tighter uppercase">
@@ -99,7 +101,7 @@ export const Home = () => {
             </button>
           </div>
           <div className="relative z-10 w-full max-w-sm">
-            <div className="bg-white/20 backdrop-blur-xl border border-white/30 p-8 rounded-[2.5rem] rotate-3 shadow-2xl">
+            <div className="bg-white/20 backdrop-blur-xl border border-white/30 p-8 rounded-2xl rotate-3 shadow-2xl">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary">
                   <Zap size={24} />
@@ -118,7 +120,7 @@ export const Home = () => {
 
       {/* Comparison CTA */}
       <section className="max-w-screen-xl mx-auto px-6 grid md:grid-cols-2 gap-8">
-        <div className="bg-slate-900 rounded-[3rem] p-12 flex flex-col justify-between items-start space-y-8 group overflow-hidden relative kinetic-border">
+        <div className="bg-slate-900 rounded-2xl md:rounded-3xl p-12 flex flex-col justify-between items-start space-y-8 group overflow-hidden relative kinetic-border">
           <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/20 blur-[80px] rounded-full translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000" />
           <BarChart2 size={48} className="text-primary" />
           <div className="space-y-4 relative z-10">
@@ -133,7 +135,7 @@ export const Home = () => {
           </button>
         </div>
 
-        <div className="bg-surface-container-low rounded-[3rem] p-12 flex flex-col justify-between items-start space-y-8 group overflow-hidden relative border border-slate-200 kinetic-border">
+        <div className="bg-surface-container-low rounded-2xl md:rounded-3xl p-12 flex flex-col justify-between items-start space-y-8 group overflow-hidden relative border border-slate-200 kinetic-border">
           <div className="absolute bottom-0 right-0 w-64 h-64 bg-tertiary/10 blur-[80px] rounded-full translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000" />
           <Truck size={48} className="text-tertiary" />
           <div className="space-y-4 relative z-10">
@@ -166,26 +168,35 @@ export const Home = () => {
             <motion.div 
               key={product.id} 
               whileHover={{ y: -10 }}
-              className="min-w-[320px] card-kinetic group"
+              className="min-w-[320px] max-w-[360px] card-kinetic group flex flex-col"
             >
-              <div className="relative aspect-square mb-6 overflow-hidden rounded-3xl bg-slate-50">
+              <div className="relative aspect-square mb-5 overflow-hidden rounded-xl bg-slate-50 ring-1 ring-slate-200/80">
                 <img 
                   src={product.image} 
                   alt={product.name} 
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                 />
-                <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest text-on-surface-variant">
                   {product.category}
                 </div>
               </div>
-              <div className="space-y-4">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-headline font-black text-xl leading-tight max-w-[70%] group-hover:text-primary transition-colors">{product.name}</h3>
-                  <p className="text-primary font-black text-xl">${product.price}</p>
+              <div className="space-y-3 flex flex-col flex-1">
+                <h3 className="font-headline font-black text-xl md:text-2xl leading-snug tracking-tight group-hover:text-primary transition-colors pr-2">
+                  {product.name}
+                </h3>
+                <p className="text-muted-secondary line-clamp-2 min-h-[2.75rem]">
+                  {product.description ?? "Pro-grade gear tuned for speed, control, and court confidence."}
+                </p>
+                <div className="flex items-baseline justify-between gap-3 pt-1">
+                  <p className="font-headline font-black text-2xl text-tertiary tabular-nums">${product.price}</p>
+                  <div className="flex items-center gap-0.5 text-tertiary shrink-0" aria-hidden>
+                    <Star size={14} fill="currentColor" strokeWidth={0} />
+                    <span className="text-xs font-bold text-on-surface-variant">{product.rating ?? "4.8"}</span>
+                  </div>
                 </div>
                 <button 
                   onClick={() => navigate(`/product/${product.id}`)}
-                  className="btn-kinetic w-full"
+                  className="btn-kinetic w-full mt-auto"
                 >
                   View Gear
                 </button>

@@ -17,9 +17,9 @@ export const Checkout = () => {
   const total = subtotal + tax;
 
   return (
-    <div className="pb-32 bg-background">
+    <div className="pb-32 min-h-screen bg-background">
       {/* Top Navigation Anchor */}
-      <header className="fixed top-0 w-full z-50 bg-white shadow-sm h-16 flex items-center px-6">
+      <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-slate-200/70 h-16 flex items-center px-6">
         <div className="flex justify-between items-center w-full max-w-screen-xl mx-auto">
           <button 
             onClick={() => navigate(-1)}
@@ -37,7 +37,7 @@ export const Checkout = () => {
         </div>
       </header>
 
-      <main className="mt-20 px-4 space-y-8 max-w-screen-md mx-auto">
+      <main className="mt-20 px-4 space-y-10 max-w-screen-md mx-auto pb-4">
         {/* Progress Stepper */}
         <section className="flex justify-between items-center px-4">
           <div className="flex flex-col items-center gap-2">
@@ -57,10 +57,10 @@ export const Checkout = () => {
         </section>
 
         {/* Cart Summary Section */}
-        <section className="space-y-4">
-          <div className="flex items-end justify-between px-2">
-            <h2 className="font-headline text-2xl font-bold tracking-tight">Your Gear</h2>
-            <span className="font-label text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full uppercase">3 Items</span>
+        <section className="space-y-4 rounded-2xl border border-slate-200/90 bg-white p-5 shadow-[var(--shadow-card)]">
+          <div className="flex items-end justify-between px-0">
+            <h2 className="font-headline text-2xl font-black tracking-tight text-on-surface">Your Gear</h2>
+            <span className="font-label text-xs font-bold text-primary bg-primary/12 px-3 py-1.5 rounded-lg uppercase tracking-wider">3 Items</span>
           </div>
 
           <div className="space-y-3">
@@ -68,7 +68,7 @@ export const Checkout = () => {
               <motion.div 
                 layout
                 key={item.id}
-                className="bg-white p-4 rounded-xl flex gap-4 shadow-[0_4px_20px_rgba(0,67,200,0.03)] group"
+                className="bg-surface-container-low/60 p-4 rounded-xl flex gap-4 border border-slate-200/70 group"
               >
                 <div className="w-24 h-24 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
                   <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={item.image} alt={item.name} />
@@ -81,7 +81,7 @@ export const Checkout = () => {
                         <Trash2 size={18} />
                       </button>
                     </div>
-                    <p className="text-xs text-on-surface-variant font-medium mt-1 uppercase tracking-wider">{item.category}</p>
+                    <p className="text-xs text-on-surface-variant/75 font-medium mt-1 uppercase tracking-wider">{item.category}</p>
                   </div>
                   <div className="flex justify-between items-center mt-2">
                     <div className="flex items-center bg-surface-container-low rounded-lg p-1">
@@ -89,7 +89,7 @@ export const Checkout = () => {
                       <span className="px-3 text-sm font-bold">{item.quantity}</span>
                       <button className="w-6 h-6 flex items-center justify-center text-primary hover:bg-white rounded transition-colors"><Plus size={14} /></button>
                     </div>
-                    <span className="font-headline font-extrabold text-lg">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="font-headline font-black text-lg text-tertiary tabular-nums">${(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 </div>
               </motion.div>
@@ -98,8 +98,8 @@ export const Checkout = () => {
         </section>
 
         {/* Checkout Form Section */}
-        <section className="space-y-6">
-          <h2 className="font-headline text-2xl font-bold tracking-tight px-2">Shipping Details</h2>
+        <section className="space-y-6 rounded-2xl border border-slate-200/90 bg-white p-5 shadow-[var(--shadow-card)]">
+          <h2 className="font-headline text-xl font-black tracking-tight text-on-surface">Shipping Details</h2>
           <div className="space-y-4">
             <div className="relative">
               <label className="absolute -top-2 left-3 bg-background px-1 text-[10px] font-bold text-primary uppercase tracking-widest">Full Name</label>
@@ -123,8 +123,8 @@ export const Checkout = () => {
         </section>
 
         {/* Payment Selection */}
-        <section className="space-y-4">
-          <h2 className="font-headline text-2xl font-bold tracking-tight px-2">Payment Method</h2>
+        <section className="space-y-4 rounded-2xl border border-slate-200/90 bg-white p-5 shadow-[var(--shadow-card)]">
+          <h2 className="font-headline text-xl font-black tracking-tight text-on-surface">Payment Method</h2>
           <div className="grid grid-cols-2 gap-3">
             <button className="flex flex-col items-center justify-center p-4 rounded-xl bg-white border-2 border-primary ring-4 ring-primary/5 transition-all">
               <CreditCard size={24} className="text-primary mb-2" />
@@ -150,8 +150,8 @@ export const Checkout = () => {
         </section>
 
         {/* Order Summary */}
-        <section className="bg-surface-container-high p-6 rounded-2xl space-y-4">
-          <h3 className="font-headline font-bold uppercase tracking-wider text-xs text-on-surface-variant">Order Recap</h3>
+        <section className="bg-surface-container-high/90 border border-slate-200/80 p-6 rounded-2xl space-y-4">
+          <h3 className="font-headline font-bold uppercase tracking-wider text-xs text-on-surface-variant/80">Order recap</h3>
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
               <span className="text-on-surface-variant">Subtotal</span>
@@ -168,8 +168,8 @@ export const Checkout = () => {
             <div className="pt-4 border-t border-outline-variant/30 flex justify-between items-center">
               <span className="font-headline font-bold text-lg">Total</span>
               <div className="text-right">
-                <span className="font-headline font-black text-2xl text-primary">${total.toFixed(2)}</span>
-                <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter">USD Inc. VAT</p>
+                <span className="font-headline font-black text-2xl text-tertiary tabular-nums">${total.toFixed(2)}</span>
+                <p className="text-[10px] text-on-surface-variant/65 font-medium uppercase tracking-wide">USD incl. estimated tax · saved securely at checkout</p>
               </div>
             </div>
           </div>
@@ -177,15 +177,15 @@ export const Checkout = () => {
       </main>
 
       {/* Sticky Action Footer */}
-      <footer className="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-md z-50 p-4 pb-8 shadow-[0_-10px_30px_rgba(0,87,255,0.05)] rounded-t-3xl">
+      <footer className="fixed bottom-0 left-0 w-full bg-background/95 backdrop-blur-md z-50 p-4 pb-8 border-t border-slate-200/80 rounded-t-xl shadow-[0_-8px_28px_rgba(0,57,168,0.08)]">
         <div className="max-w-screen-md mx-auto space-y-4">
           <div className="flex items-center gap-2 px-2">
-            <ShieldCheck size={16} className="text-primary" />
-            <span className="text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant">Secure AES-256 Encrypted Checkout</span>
+            <ShieldCheck size={16} className="text-primary shrink-0" />
+            <span className="text-[10px] font-label font-semibold uppercase tracking-widest text-on-surface-variant/75">Secure AES-256 encrypted checkout</span>
           </div>
-          <button className="w-full bg-gradient-to-r from-primary to-primary-container text-white py-5 rounded-xl font-headline font-black text-lg tracking-tight shadow-lg shadow-primary/20 flex items-center justify-center gap-3 active:scale-[0.98] transition-all group">
+          <button type="button" className="btn-kinetic w-full py-6 text-base md:text-lg min-h-[56px] group">
             COMPLETE ORDER
-            <Bolt size={20} className="group-hover:translate-x-1 transition-transform" />
+            <Bolt size={22} strokeWidth={2.25} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <div className="flex justify-center items-center gap-8 opacity-40 grayscale">
             <Rocket size={24} />
