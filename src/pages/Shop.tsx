@@ -151,13 +151,14 @@ export const Shop = () => {
                     <h3 className="font-headline font-black text-xl leading-tight group-hover:text-primary transition-colors h-14 flex items-center">
                       {product.name}
                     </h3>
+                    <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">{product.category}</p>
                   </div>
 
-                  <div className="flex items-center justify-between pt-2">
-                    <p className="text-2xl font-black text-slate-900">${product.price}</p>
+                  <div className="flex items-center justify-between pt-3 border-t border-black/5">
+                    <p className="text-2xl font-black text-tertiary">${product.price}</p>
                     <button 
                       onClick={() => navigate(`/product/${product.id}`)}
-                      className="w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center hover:bg-primary transition-all group/btn shadow-lg"
+                      className="w-12 h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center hover:bg-primary transition-all group/btn shadow-lg"
                     >
                       <ChevronRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
                     </button>

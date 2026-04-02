@@ -37,21 +37,21 @@ export const Checkout = () => {
         </div>
       </header>
 
-      <main className="mt-20 px-4 space-y-8 max-w-screen-md mx-auto">
+      <main className="mt-20 px-4 space-y-10 max-w-screen-md mx-auto">
         {/* Progress Stepper */}
         <section className="flex justify-between items-center px-4">
           <div className="flex flex-col items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs ring-4 ring-primary/10">1</div>
+            <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-primary/10">1</div>
             <span className="text-[10px] font-label font-bold uppercase tracking-widest text-primary">Cart</span>
           </div>
           <div className="h-[2px] flex-grow bg-primary mx-2 rounded-full"></div>
           <div className="flex flex-col items-center gap-2 opacity-50">
-            <div className="w-8 h-8 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center font-bold text-xs">2</div>
+            <div className="w-10 h-10 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center font-bold text-sm">2</div>
             <span className="text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant">Shipping</span>
           </div>
           <div className="h-[2px] flex-grow bg-surface-container-high mx-2 rounded-full"></div>
           <div className="flex flex-col items-center gap-2 opacity-50">
-            <div className="w-8 h-8 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center font-bold text-xs">3</div>
+            <div className="w-10 h-10 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center font-bold text-sm">3</div>
             <span className="text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant">Payment</span>
           </div>
         </section>
@@ -59,37 +59,37 @@ export const Checkout = () => {
         {/* Cart Summary Section */}
         <section className="space-y-4">
           <div className="flex items-end justify-between px-2">
-            <h2 className="font-headline text-2xl font-bold tracking-tight">Your Gear</h2>
+            <h2 className="font-headline text-2xl font-black tracking-tight uppercase">Your Gear</h2>
             <span className="font-label text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full uppercase">3 Items</span>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {cartItems.map((item) => (
               <motion.div 
                 layout
                 key={item.id}
-                className="bg-white p-4 rounded-xl flex gap-4 shadow-[0_4px_20px_rgba(0,67,200,0.03)] group"
+                className="card-kinetic p-4 flex gap-4"
               >
-                <div className="w-24 h-24 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+                <div className="w-24 h-24 bg-surface-container-low rounded-xl overflow-hidden flex-shrink-0">
                   <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={item.image} alt={item.name} />
                 </div>
                 <div className="flex flex-col justify-between flex-grow py-1">
                   <div>
                     <div className="flex justify-between items-start">
-                      <h3 className="font-bold text-on-surface leading-tight tracking-tight">{item.name}</h3>
-                      <button className="text-outline hover:text-red-500 transition-colors">
+                      <h3 className="font-black text-on-surface leading-tight tracking-tight text-lg">{item.name}</h3>
+                      <button className="text-outline hover:text-tertiary transition-colors">
                         <Trash2 size={18} />
                       </button>
                     </div>
-                    <p className="text-xs text-on-surface-variant font-medium mt-1 uppercase tracking-wider">{item.category}</p>
+                    <p className="text-[10px] text-on-surface-variant font-black mt-1 uppercase tracking-widest">{item.category}</p>
                   </div>
                   <div className="flex justify-between items-center mt-2">
                     <div className="flex items-center bg-surface-container-low rounded-lg p-1">
-                      <button className="w-6 h-6 flex items-center justify-center text-primary hover:bg-white rounded transition-colors"><Minus size={14} /></button>
-                      <span className="px-3 text-sm font-bold">{item.quantity}</span>
-                      <button className="w-6 h-6 flex items-center justify-center text-primary hover:bg-white rounded transition-colors"><Plus size={14} /></button>
+                      <button className="w-8 h-8 flex items-center justify-center text-primary hover:bg-white rounded-lg transition-colors"><Minus size={14} /></button>
+                      <span className="px-4 text-sm font-black">{item.quantity}</span>
+                      <button className="w-8 h-8 flex items-center justify-center text-primary hover:bg-white rounded-lg transition-colors"><Plus size={14} /></button>
                     </div>
-                    <span className="font-headline font-extrabold text-lg">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="font-headline font-black text-xl text-tertiary">${(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 </div>
               </motion.div>
@@ -99,24 +99,24 @@ export const Checkout = () => {
 
         {/* Checkout Form Section */}
         <section className="space-y-6">
-          <h2 className="font-headline text-2xl font-bold tracking-tight px-2">Shipping Details</h2>
-          <div className="space-y-4">
+          <h2 className="font-headline text-2xl font-black tracking-tight px-2 uppercase">Shipping Details</h2>
+          <div className="card-kinetic space-y-6">
             <div className="relative">
-              <label className="absolute -top-2 left-3 bg-background px-1 text-[10px] font-bold text-primary uppercase tracking-widest">Full Name</label>
-              <input className="w-full bg-surface-container-low border-none border-b-2 border-primary rounded-lg px-4 py-4 text-sm font-medium focus:ring-0 focus:border-primary transition-all" type="text" defaultValue="Alex Rivera" />
+              <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black text-primary uppercase tracking-widest z-10">Full Name</label>
+              <input className="w-full bg-surface-container-low border-2 border-transparent focus:border-primary rounded-xl px-4 py-4 text-sm font-bold focus:ring-0 transition-all outline-none" type="text" defaultValue="Alex Rivera" />
             </div>
             <div className="relative">
-              <label className="absolute -top-2 left-3 bg-background px-1 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Shipping Address</label>
-              <input className="w-full bg-surface-container-low border-none border-b-2 border-transparent focus:border-primary rounded-lg px-4 py-4 text-sm font-medium focus:ring-0 transition-all" placeholder="123 Velocity Lane" type="text" />
+              <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black text-on-surface-variant uppercase tracking-widest z-10">Shipping Address</label>
+              <input className="w-full bg-surface-container-low border-2 border-transparent focus:border-primary rounded-xl px-4 py-4 text-sm font-bold focus:ring-0 transition-all outline-none" placeholder="123 Velocity Lane" type="text" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="relative">
-                <label className="absolute -top-2 left-3 bg-background px-1 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">City</label>
-                <input className="w-full bg-surface-container-low border-none border-b-2 border-transparent focus:border-primary rounded-lg px-4 py-4 text-sm font-medium focus:ring-0 transition-all" placeholder="Portland" type="text" />
+                <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black text-on-surface-variant uppercase tracking-widest z-10">City</label>
+                <input className="w-full bg-surface-container-low border-2 border-transparent focus:border-primary rounded-xl px-4 py-4 text-sm font-bold focus:ring-0 transition-all outline-none" placeholder="Portland" type="text" />
               </div>
               <div className="relative">
-                <label className="absolute -top-2 left-3 bg-background px-1 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Zip Code</label>
-                <input className="w-full bg-surface-container-low border-none border-b-2 border-transparent focus:border-primary rounded-lg px-4 py-4 text-sm font-medium focus:ring-0 transition-all" placeholder="97201" type="text" />
+                <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black text-on-surface-variant uppercase tracking-widest z-10">Zip Code</label>
+                <input className="w-full bg-surface-container-low border-2 border-transparent focus:border-primary rounded-xl px-4 py-4 text-sm font-bold focus:ring-0 transition-all outline-none" placeholder="97201" type="text" />
               </div>
             </div>
           </div>
@@ -124,25 +124,27 @@ export const Checkout = () => {
 
         {/* Payment Selection */}
         <section className="space-y-4">
-          <h2 className="font-headline text-2xl font-bold tracking-tight px-2">Payment Method</h2>
-          <div className="grid grid-cols-2 gap-3">
-            <button className="flex flex-col items-center justify-center p-4 rounded-xl bg-white border-2 border-primary ring-4 ring-primary/5 transition-all">
-              <CreditCard size={24} className="text-primary mb-2" />
-              <span className="text-xs font-bold uppercase tracking-widest">Card</span>
+          <h2 className="font-headline text-2xl font-black tracking-tight px-2 uppercase">Payment Method</h2>
+          <div className="grid grid-cols-2 gap-4">
+            <button className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white border-2 border-primary shadow-kinetic ring-4 ring-primary/5 transition-all">
+              <CreditCard size={28} className="text-primary mb-2" />
+              <span className="text-xs font-black uppercase tracking-widest">Card</span>
             </button>
-            <button className="flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-low border-2 border-transparent hover:bg-surface-container-high transition-all">
-              <Wallet size={24} className="text-on-surface-variant mb-2" />
-              <span className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Wallet</span>
+            <button className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white border-2 border-transparent hover:border-primary/20 transition-all shadow-soft">
+              <Wallet size={28} className="text-on-surface-variant mb-2" />
+              <span className="text-xs font-black uppercase tracking-widest text-on-surface-variant">Wallet</span>
             </button>
           </div>
           
-          <div className="bg-surface-container-low p-4 rounded-xl space-y-4">
-            <div className="flex items-center gap-3 border-b border-outline-variant/20 pb-3">
-              <CreditCard size={20} className="text-blue-600" />
-              <span className="text-sm font-bold">•••• •••• •••• 4242</span>
-              <button className="ml-auto text-[10px] font-bold text-primary uppercase tracking-widest hover:underline">Change</button>
+          <div className="card-kinetic space-y-4">
+            <div className="flex items-center gap-4 border-b border-black/5 pb-4">
+              <div className="w-12 h-8 bg-slate-100 rounded flex items-center justify-center">
+                <CreditCard size={20} className="text-blue-600" />
+              </div>
+              <span className="text-sm font-black">•••• •••• •••• 4242</span>
+              <button className="ml-auto text-[10px] font-black text-primary uppercase tracking-widest hover:underline">Change</button>
             </div>
-            <div className="flex justify-between text-xs font-medium text-on-surface-variant">
+            <div className="flex justify-between text-[10px] font-black text-on-surface-variant uppercase tracking-widest">
               <span>Expires 12/26</span>
               <span>CVC •••</span>
             </div>
@@ -150,26 +152,26 @@ export const Checkout = () => {
         </section>
 
         {/* Order Summary */}
-        <section className="bg-surface-container-high p-6 rounded-2xl space-y-4">
-          <h3 className="font-headline font-bold uppercase tracking-wider text-xs text-on-surface-variant">Order Recap</h3>
-          <div className="space-y-2">
+        <section className="card-kinetic bg-slate-900 text-white space-y-6">
+          <h3 className="font-headline font-black uppercase tracking-widest text-xs text-primary">Order Recap</h3>
+          <div className="space-y-3">
             <div className="flex justify-between items-center text-sm">
-              <span className="text-on-surface-variant">Subtotal</span>
-              <span className="font-bold">${subtotal.toFixed(2)}</span>
+              <span className="text-slate-400 font-bold">Subtotal</span>
+              <span className="font-black">${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between items-center text-sm">
-              <span className="text-on-surface-variant">Shipping (Express)</span>
-              <span className="font-bold text-primary">FREE</span>
+              <span className="text-slate-400 font-bold">Shipping (Express)</span>
+              <span className="font-black text-primary">FREE</span>
             </div>
             <div className="flex justify-between items-center text-sm">
-              <span className="text-on-surface-variant">Estimated Tax</span>
-              <span className="font-bold">${tax.toFixed(2)}</span>
+              <span className="text-slate-400 font-bold">Estimated Tax</span>
+              <span className="font-black">${tax.toFixed(2)}</span>
             </div>
-            <div className="pt-4 border-t border-outline-variant/30 flex justify-between items-center">
-              <span className="font-headline font-bold text-lg">Total</span>
+            <div className="pt-6 border-t border-white/10 flex justify-between items-end">
+              <span className="font-headline font-black text-xl uppercase italic">Total</span>
               <div className="text-right">
-                <span className="font-headline font-black text-2xl text-primary">${total.toFixed(2)}</span>
-                <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter">USD Inc. VAT</p>
+                <span className="font-headline font-black text-4xl text-primary text-glow">${total.toFixed(2)}</span>
+                <p className="text-[10px] text-slate-500 font-black uppercase tracking-tighter">USD Inc. VAT</p>
               </div>
             </div>
           </div>
@@ -177,21 +179,16 @@ export const Checkout = () => {
       </main>
 
       {/* Sticky Action Footer */}
-      <footer className="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-md z-50 p-4 pb-8 shadow-[0_-10px_30px_rgba(0,87,255,0.05)] rounded-t-3xl">
-        <div className="max-w-screen-md mx-auto space-y-4">
-          <div className="flex items-center gap-2 px-2">
-            <ShieldCheck size={16} className="text-primary" />
-            <span className="text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant">Secure AES-256 Encrypted Checkout</span>
+      <footer className="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl z-50 p-6 pb-10 shadow-[0_-20px_40px_rgba(0,55,163,0.1)] rounded-t-[2.5rem] border-t border-black/5">
+        <div className="max-w-screen-md mx-auto space-y-6">
+          <div className="flex items-center justify-center gap-2">
+            <ShieldCheck size={18} className="text-primary" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant">Secure AES-256 Encrypted Checkout</span>
           </div>
-          <button className="w-full bg-gradient-to-r from-primary to-primary-container text-white py-5 rounded-xl font-headline font-black text-lg tracking-tight shadow-lg shadow-primary/20 flex items-center justify-center gap-3 active:scale-[0.98] transition-all group">
+          <button className="btn-kinetic w-full py-6 text-xl tracking-tighter shadow-kinetic-hover">
             COMPLETE ORDER
-            <Bolt size={20} className="group-hover:translate-x-1 transition-transform" />
+            <Bolt size={24} className="animate-pulse" />
           </button>
-          <div className="flex justify-center items-center gap-8 opacity-40 grayscale">
-            <Rocket size={24} />
-            <Shield size={24} />
-            <Leaf size={24} />
-          </div>
         </div>
       </footer>
     </div>

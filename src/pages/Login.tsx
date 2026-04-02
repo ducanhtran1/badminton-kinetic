@@ -60,17 +60,17 @@ export const Login = () => {
 
           {/* Header */}
           <div className="mb-10 text-left">
-            <h2 className="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2">Welcome Back</h2>
-            <p className="text-on-surface-variant font-medium">Access your high-performance locker.</p>
+            <h2 className="font-headline text-4xl font-black tracking-tighter text-on-surface mb-2 uppercase italic">Welcome Back</h2>
+            <p className="text-on-surface-variant font-bold text-sm uppercase tracking-widest opacity-70">Access your high-performance locker.</p>
           </div>
 
           {/* Tabbed Navigation */}
-          <div className="flex p-1 bg-surface-container-low rounded-xl mb-8">
+          <div className="flex p-1.5 bg-surface-container-low rounded-2xl mb-8 border border-black/5">
             <button 
               onClick={() => setActiveTab("login")}
               className={cn(
-                "flex-1 py-3 text-sm font-bold rounded-lg transition-all",
-                activeTab === "login" ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"
+                "flex-1 py-3.5 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300",
+                activeTab === "login" ? "bg-white shadow-kinetic text-primary" : "text-on-surface-variant hover:text-on-surface"
               )}
             >
               Login
@@ -78,8 +78,8 @@ export const Login = () => {
             <button 
               onClick={() => setActiveTab("register")}
               className={cn(
-                "flex-1 py-3 text-sm font-bold rounded-lg transition-all",
-                activeTab === "register" ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"
+                "flex-1 py-3.5 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300",
+                activeTab === "register" ? "bg-white shadow-kinetic text-primary" : "text-on-surface-variant hover:text-on-surface"
               )}
             >
               Register
@@ -89,40 +89,38 @@ export const Login = () => {
           {/* Form */}
           <form className="space-y-6" onSubmit={handleLogin}>
             <div className="space-y-2">
-              <label className="block text-xs font-black tracking-widest text-on-surface-variant uppercase" htmlFor="identifier">Email or Phone</label>
+              <label className="block text-[10px] font-black tracking-[0.2em] text-on-surface-variant uppercase ml-1" htmlFor="identifier">Email or Phone</label>
               <div className="relative group">
                 <input 
-                  className="w-full bg-surface-container-low border-none focus:ring-0 focus:border-primary border-b-2 border-transparent transition-all px-4 py-4 rounded-xl placeholder:text-outline/50" 
+                  className="w-full bg-surface-container-low border-2 border-transparent focus:border-primary transition-all px-5 py-4 rounded-xl placeholder:text-outline/30 font-bold outline-none" 
                   id="identifier" 
                   placeholder="pro@kinetic.com" 
                   type="text" 
                   required
                 />
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-focus-within:w-full"></div>
               </div>
             </div>
             <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <label className="block text-xs font-black tracking-widest text-on-surface-variant uppercase" htmlFor="password">Password</label>
-                <button type="button" className="text-xs font-bold text-primary hover:underline">Forgot?</button>
+              <div className="flex justify-between items-center px-1">
+                <label className="block text-[10px] font-black tracking-[0.2em] text-on-surface-variant uppercase" htmlFor="password">Password</label>
+                <button type="button" className="text-[10px] font-black text-primary hover:underline uppercase tracking-widest">Forgot?</button>
               </div>
               <div className="relative group">
                 <input 
-                  className="w-full bg-surface-container-low border-none focus:ring-0 focus:border-primary border-b-2 border-transparent transition-all px-4 py-4 rounded-xl placeholder:text-outline/50" 
+                  className="w-full bg-surface-container-low border-2 border-transparent focus:border-primary transition-all px-5 py-4 rounded-xl placeholder:text-outline/30 font-bold outline-none" 
                   id="password" 
                   placeholder="••••••••" 
                   type="password" 
                   required
                 />
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-focus-within:w-full"></div>
               </div>
             </div>
             <button 
-              className="bg-gradient-to-r from-primary to-primary-container w-full py-4 text-white font-bold rounded-xl shadow-[0_10px_30px_rgba(0,67,200,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex justify-center items-center gap-2" 
+              className="btn-kinetic w-full py-5 shadow-kinetic-hover" 
               type="submit"
             >
               <span>LAUNCH SESSION</span>
-              <Bolt size={20} />
+              <Bolt size={20} className="animate-pulse" />
             </button>
           </form>
 

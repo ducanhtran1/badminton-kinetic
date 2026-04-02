@@ -68,27 +68,27 @@ export const Profile = () => {
       </section>
 
       {/* Bento Grid Dashboard */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Quick Stats Card */}
-        <div className="bg-white p-8 rounded-[2rem] shadow-[0_10px_30px_rgba(0,87,255,0.05)] md:col-span-1">
-          <h3 className="font-headline font-bold text-sm tracking-widest uppercase mb-6 opacity-60">Performance Specs</h3>
-          <div className="space-y-6">
+        <div className="card-kinetic md:col-span-1">
+          <h3 className="font-headline font-black text-[10px] tracking-[0.2em] uppercase mb-8 text-on-surface-variant opacity-60">Performance Specs</h3>
+          <div className="space-y-8">
             {[
               { label: "Repulsion Power", value: 94 },
               { label: "Control Accuracy", value: 88 },
               { label: "Swing Speed", value: 91 }
             ].map((stat) => (
               <div key={stat.label}>
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm font-bold">{stat.label}</span>
-                  <span className="text-sm text-primary font-black">{stat.value}%</span>
+                <div className="flex justify-between mb-3">
+                  <span className="text-xs font-black uppercase tracking-widest">{stat.label}</span>
+                  <span className="text-xs text-primary font-black">{stat.value}%</span>
                 </div>
-                <div className="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+                <div className="h-2 w-full bg-surface-container rounded-full overflow-hidden">
                   <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${stat.value}%` }}
-                    transition={{ duration: 1, delay: 0.6 }}
-                    className="h-full bg-primary" 
+                    transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
+                    className="h-full bg-primary shadow-[0_0_10px_rgba(0,55,163,0.3)]" 
                   />
                 </div>
               </div>
@@ -97,58 +97,62 @@ export const Profile = () => {
         </div>
 
         {/* Recent Orders List */}
-        <div className="bg-white p-8 rounded-[2rem] shadow-[0_10px_30px_rgba(0,87,255,0.05)] md:col-span-2">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="font-headline font-bold text-sm tracking-widest uppercase opacity-60">Order History</h3>
-            <button className="text-primary font-bold text-sm flex items-center gap-1 hover:underline">
-              View All <ArrowRight size={14} />
+        <div className="card-kinetic md:col-span-2">
+          <div className="flex justify-between items-center mb-8">
+            <h3 className="font-headline font-black text-[10px] tracking-[0.2em] uppercase text-on-surface-variant opacity-60">Order History</h3>
+            <button className="text-primary font-black text-[10px] uppercase tracking-widest flex items-center gap-1 hover:underline">
+              View All <ArrowRight size={12} />
             </button>
           </div>
           <div className="space-y-4">
             {recentOrders.map((order) => (
-              <div key={order.id} className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface-container-low transition-colors group cursor-pointer">
-                <div className="w-16 h-16 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
-                  <img className="w-full h-full object-cover" src={order.image} alt={order.name} />
+              <div key={order.id} className="flex items-center gap-5 p-4 rounded-2xl hover:bg-surface-container-low transition-all duration-300 group cursor-pointer border border-transparent hover:border-black/5">
+                <div className="w-16 h-16 bg-surface-container-low rounded-xl overflow-hidden flex-shrink-0">
+                  <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src={order.image} alt={order.name} />
                 </div>
                 <div className="flex-grow">
-                  <h4 className="font-bold">{order.name}</h4>
-                  <p className="text-xs text-on-surface-variant">Delivered {order.date} • Order #{order.orderId}</p>
+                  <h4 className="font-black text-on-surface">{order.name}</h4>
+                  <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mt-1 opacity-60">Delivered {order.date} • Order #{order.orderId}</p>
                 </div>
-                <span className="font-black text-primary">${order.price.toFixed(2)}</span>
+                <span className="font-black text-tertiary text-lg">${order.price.toFixed(2)}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Saved Items */}
-        <div className="md:col-span-3">
-          <div className="flex justify-between items-center mb-6 px-2">
-            <h3 className="font-headline font-bold text-sm tracking-widest uppercase opacity-60">Saved Gear</h3>
-            <div className="flex gap-2">
-              <button className="w-10 h-10 rounded-full border border-outline-variant/20 flex items-center justify-center hover:bg-white transition-colors">
+        <div className="md:col-span-3 mt-4">
+          <div className="flex justify-between items-center mb-8 px-2">
+            <h3 className="font-headline font-black text-[10px] tracking-[0.2em] uppercase text-on-surface-variant opacity-60">Saved Gear</h3>
+            <div className="flex gap-3">
+              <button className="w-12 h-12 rounded-xl border border-black/5 bg-white shadow-soft flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
                 <ChevronLeft size={20} />
               </button>
-              <button className="w-10 h-10 rounded-full border border-outline-variant/20 flex items-center justify-center hover:bg-white transition-colors">
+              <button className="w-12 h-12 rounded-xl border border-black/5 bg-white shadow-soft flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
                 <ChevronRight size={20} />
               </button>
             </div>
           </div>
-          <div className="flex gap-6 overflow-x-auto no-scrollbar pb-4 -mx-2 px-2">
+          <div className="flex gap-8 overflow-x-auto no-scrollbar pb-8 -mx-2 px-2">
             {savedGear.map((item) => (
-              <div key={item.id} className="min-w-[280px] bg-white p-5 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow group flex-shrink-0">
-                <div className="aspect-[4/5] bg-surface rounded-xl mb-4 overflow-hidden relative">
-                  <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={item.image} alt={item.name} />
+              <div key={item.id} className="min-w-[300px] card-kinetic group flex-shrink-0">
+                <div className="aspect-[4/5] bg-surface-container-low rounded-2xl mb-6 overflow-hidden relative">
+                  <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={item.image} alt={item.name} />
                   {item.tag && (
-                    <span className="absolute top-4 left-4 bg-tertiary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                    <span className="absolute top-4 left-4 bg-tertiary text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg">
                       {item.tag}
                     </span>
                   )}
                 </div>
-                <h4 className="font-bold text-lg">{item.name}</h4>
-                <p className="text-primary font-black mb-4">${item.price.toFixed(2)}</p>
-                <button className="w-full py-3 bg-primary text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container transition-colors">
-                  <ShoppingBag size={16} /> Add to Cart
-                </button>
+                <div className="space-y-4">
+                  <div className="space-y-1">
+                    <h4 className="font-black text-xl font-headline group-hover:text-primary transition-colors">{item.name}</h4>
+                    <p className="text-tertiary font-black text-2xl">${item.price.toFixed(2)}</p>
+                  </div>
+                  <button className="btn-kinetic w-full py-4 text-xs">
+                    <ShoppingBag size={16} /> Add to Cart
+                  </button>
+                </div>
               </div>
             ))}
           </div>

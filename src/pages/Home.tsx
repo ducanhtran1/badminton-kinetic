@@ -35,11 +35,11 @@ export const Home = () => {
               <Zap size={16} className="text-primary" />
               <span className="text-primary font-black text-xs uppercase tracking-widest">New Season Arrival</span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-black font-headline text-white leading-[0.85] tracking-tighter uppercase">
-              Defy <br />
-              <span className="text-primary">Gravity</span>
+            <h1 className="text-6xl md:text-9xl font-black font-headline text-white leading-[0.8] tracking-tighter uppercase">
+              Smash the <br />
+              <span className="text-primary text-glow drop-shadow-2xl">Limits</span>
             </h1>
-            <p className="text-slate-400 text-lg max-w-md font-medium leading-relaxed">
+            <p className="text-slate-200 text-lg md:text-xl max-w-md font-medium leading-relaxed drop-shadow-md">
               Engineered for the elite. Experience the next generation of aerodynamic performance with the Kinetic Series.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -179,16 +179,19 @@ export const Home = () => {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-headline font-black text-xl leading-tight max-w-[70%] group-hover:text-primary transition-colors">{product.name}</h3>
-                  <p className="text-primary font-black text-xl">${product.price}</p>
+                <div className="space-y-1">
+                  <h3 className="font-headline font-black text-xl leading-tight group-hover:text-primary transition-colors">{product.name}</h3>
+                  <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">{product.category}</p>
                 </div>
-                <button 
-                  onClick={() => navigate(`/product/${product.id}`)}
-                  className="btn-kinetic w-full"
-                >
-                  View Gear
-                </button>
+                <div className="flex items-center justify-between pt-2 border-t border-black/5">
+                  <p className="text-tertiary font-black text-2xl">${product.price}</p>
+                  <button 
+                    onClick={() => navigate(`/product/${product.id}`)}
+                    className="w-10 h-10 bg-slate-900 text-white rounded-lg flex items-center justify-center hover:bg-primary transition-all"
+                  >
+                    <ArrowRight size={18} />
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}

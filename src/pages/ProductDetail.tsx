@@ -61,13 +61,13 @@ export const ProductDetail = () => {
           </div>
 
           <div className="mt-6 flex items-baseline gap-3">
-            <span className="text-3xl font-black font-headline text-on-surface">${product.price.toFixed(2)}</span>
+            <span className="text-4xl font-black font-headline text-tertiary">${product.price.toFixed(2)}</span>
             {product.oldPrice && (
-              <span className="text-on-surface-variant line-through text-lg font-medium">${product.oldPrice.toFixed(2)}</span>
+              <span className="text-on-surface-variant line-through text-xl font-medium">${product.oldPrice.toFixed(2)}</span>
             )}
           </div>
 
-          <p className="mt-6 text-on-surface-variant leading-relaxed">
+          <p className="mt-6 text-on-surface-variant leading-relaxed text-sm md:text-base">
             {product.description}
           </p>
 
