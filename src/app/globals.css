@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-headline: "Lexend", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-label: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: var(--font-headline-next, "Lexend"), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-body-next, "Manrope"), ui-sans-serif, system-ui, sans-serif;
+  --font-label: var(--font-body-next, "Manrope"), ui-sans-serif, system-ui, sans-serif;
 
   /* Primary CTA blue — slightly deeper for contrast & consistency */
   --color-primary: #0039a8;
@@ -29,7 +29,7 @@
 
 @layer base {
   body {
-    @apply bg-background font-body text-on-surface;
+    @apply bg-background font-body text-on-surface antialiased;
   }
 }
 

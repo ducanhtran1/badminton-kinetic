@@ -1,12 +1,15 @@
+"use client";
+
 import React from "react";
-import { useParams, Link } from "react-router-dom";
-import { Star, Bolt, Truck, ShieldCheck, ArrowUpRight, ChevronLeft, ChevronRight, ShoppingCart, Heart } from "lucide-react";
+import { useParams } from "next/navigation";
+import { Star, Bolt, Truck, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
-import { PRODUCTS, REVIEWS } from "../constants";
-import { cn } from "../lib/utils";
+import { PRODUCTS, REVIEWS } from "@/constants";
+import { cn } from "@/lib/utils";
 
 export const ProductDetail = () => {
-  const { id } = useParams();
+  const params = useParams();
+  const id = typeof params?.id === "string" ? params.id : "";
   const product = PRODUCTS.find((p) => p.id === id) || PRODUCTS[0];
 
   return (
@@ -170,7 +173,9 @@ export const ProductDetail = () => {
               <div className="flex gap-1 text-tertiary mb-4">
                 {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={12} fill="currentColor" />)}
               </div>
-              <p className="font-bold italic text-lg mb-6 leading-tight">"{review.comment}"</p>
+              <p className="font-bold italic text-lg mb-6 leading-tight">
+                &ldquo;{review.comment}&rdquo;
+              </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center font-bold text-primary">{review.avatar}</div>
                 <div>

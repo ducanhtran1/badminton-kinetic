@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
 import { Edit, Star, ArrowRight, ChevronLeft, ChevronRight, ShoppingBag, User, Bell, CreditCard, ChevronRight as ChevronRightIcon } from "lucide-react";
 import { motion } from "motion/react";
-import { PRODUCTS } from "../constants";
+import { PRODUCTS } from "@/constants";
 
 export const Profile = () => {
   const recentOrders = [

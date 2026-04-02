@@ -1,16 +1,18 @@
+"use client";
+
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { Bolt, Chrome, Apple } from "lucide-react";
 import { motion } from "motion/react";
-import { cn } from "../lib/utils";
+import { cn } from "@/lib/utils";
 
 export const Login = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("login");
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/");
+    router.push("/");
   };
 
   return (

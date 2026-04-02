@@ -1,12 +1,13 @@
+"use client";
+
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { ArrowLeft, X, Trash2, Minus, Plus, CreditCard, Wallet, Shield, Bolt, Rocket, ShieldCheck, Leaf } from "lucide-react";
 import { motion } from "motion/react";
-import { PRODUCTS } from "../constants";
-import { cn } from "../lib/utils";
+import { PRODUCTS } from "@/constants";
 
 export const Checkout = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const cartItems = [
     { ...PRODUCTS[0], quantity: 1 },
     { ...PRODUCTS[5], quantity: 2 },
@@ -22,14 +23,14 @@ export const Checkout = () => {
       <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-slate-200/70 h-16 flex items-center px-6">
         <div className="flex justify-between items-center w-full max-w-screen-xl mx-auto">
           <button 
-            onClick={() => navigate(-1)}
+            onClick={() => router.back()}
             className="p-2 -ml-2 hover:bg-blue-50 transition-colors rounded-full active:scale-95 duration-150"
           >
             <ArrowLeft size={24} className="text-slate-600" />
           </button>
           <h1 className="text-2xl font-black italic tracking-tighter text-primary font-headline uppercase">KINETIC</h1>
           <button 
-            onClick={() => navigate("/")}
+            onClick={() => router.push("/")}
             className="p-2 -mr-2 hover:bg-blue-50 transition-colors rounded-full active:scale-95 duration-150"
           >
             <X size={24} className="text-slate-600" />

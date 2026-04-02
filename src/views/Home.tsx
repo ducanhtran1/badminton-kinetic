@@ -1,12 +1,14 @@
+"use client";
+
 import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, Star, Zap, Shield, Truck, BarChart2, Target, Bolt, MessageCircle } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import { PRODUCTS } from "../constants";
+import { PRODUCTS } from "@/constants";
 import { motion } from "motion/react";
-import { cn } from "../lib/utils";
 
 export const Home = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const featuredProducts = PRODUCTS.slice(0, 3);
 
   return (
@@ -46,13 +48,13 @@ export const Home = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <button 
-                onClick={() => navigate("/shop")}
+                onClick={() => router.push("/shop")}
                 className="btn-kinetic"
               >
                 Shop Collection <ArrowRight size={20} />
               </button>
               <button 
-                onClick={() => navigate("/racket-finder")}
+                onClick={() => router.push("/racket-finder")}
                 className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-xl font-black text-lg min-h-[52px] hover:bg-white/20 transition-all"
               >
                 Find Your Racket
@@ -94,7 +96,7 @@ export const Home = () => {
               Take our 30-second quiz and find the perfect gear for your unique playstyle.
             </p>
             <button 
-              onClick={() => navigate("/racket-finder")}
+              onClick={() => router.push("/racket-finder")}
               className="btn-kinetic bg-white text-primary hover:text-white"
             >
               Start Racket Finder
@@ -128,7 +130,7 @@ export const Home = () => {
             <p className="text-slate-400 font-medium">Analyze technical specs and performance metrics of up to 3 products at once.</p>
           </div>
           <button 
-            onClick={() => navigate("/comparison")}
+              onClick={() => router.push("/comparison")}
             className="btn-kinetic bg-white text-slate-900 hover:text-white"
           >
             Open Comparison Tool
@@ -143,7 +145,7 @@ export const Home = () => {
             <p className="text-slate-500 font-medium">Free express delivery on all orders over $200. Track your gear in real-time.</p>
           </div>
           <button 
-            onClick={() => navigate("/shop")}
+            onClick={() => router.push("/shop")}
             className="btn-kinetic bg-slate-900"
           >
             Start Shopping
@@ -158,7 +160,7 @@ export const Home = () => {
             <span className="text-primary font-black text-xs uppercase tracking-[0.3em]">The Collection</span>
             <h2 className="text-5xl font-black font-headline tracking-tighter uppercase">New Arrivals</h2>
           </div>
-          <Link to="/shop" className="text-slate-900 font-black flex items-center gap-2 hover:text-primary transition-colors group">
+          <Link href="/shop" className="text-slate-900 font-black flex items-center gap-2 hover:text-primary transition-colors group">
             View All <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -195,7 +197,7 @@ export const Home = () => {
                   </div>
                 </div>
                 <button 
-                  onClick={() => navigate(`/product/${product.id}`)}
+                  onClick={() => router.push(`/product/${product.id}`)}
                   className="btn-kinetic w-full mt-auto"
                 >
                   View Gear

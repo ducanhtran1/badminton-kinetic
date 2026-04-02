@@ -1,13 +1,15 @@
+"use client";
+
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Plus, Zap, Target, Shield, Info, ChevronRight } from "lucide-react";
-import { PRODUCTS } from "../constants";
-import { useNavigate } from "react-router-dom";
+import { X, Plus, ChevronRight } from "lucide-react";
+import { PRODUCTS } from "@/constants";
 
 export const Comparison = () => {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isAdding, setIsAdding] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const selectedProducts = PRODUCTS.filter(p => selectedIds.includes(p.id));
 
@@ -20,7 +22,7 @@ export const Comparison = () => {
   };
 
   return (
-    <div className="min-h-screen bg-surface-container-lowest p-6 pb-32">
+    <div className="min-h-screen bg-background p-6 pb-32">
       <div className="max-w-7xl mx-auto space-y-12">
         <header className="flex items-center justify-between">
           <div className="space-y-2">
@@ -112,7 +114,7 @@ export const Comparison = () => {
                   </div>
 
                   <button 
-                    onClick={() => navigate(`/product/${product.id}`)}
+                    onClick={() => router.push(`/product/${product.id}`)}
                     className="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-primary transition-colors flex items-center justify-center gap-2 group/btn"
                   >
                     View Details

@@ -1,16 +1,18 @@
+"use client";
+
 import React, { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { Search, SlidersHorizontal, Star, ShoppingCart, ArrowUpDown, ChevronRight, Zap } from "lucide-react";
-import { PRODUCTS, CATEGORIES } from "../constants";
-import { Link, useNavigate } from "react-router-dom";
+import { PRODUCTS, CATEGORIES } from "@/constants";
 import { motion, AnimatePresence } from "motion/react";
-import { cn } from "../lib/utils";
+import { cn } from "@/lib/utils";
 
 export const Shop = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Gear");
   const [sortBy, setSortBy] = useState("featured");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter((product) => {
@@ -159,7 +161,7 @@ export const Shop = () => {
                   <div className="flex items-center justify-between pt-2 mt-auto">
                     <p className="text-2xl font-black font-headline text-tertiary tabular-nums">${product.price}</p>
                     <button 
-                      onClick={() => navigate(`/product/${product.id}`)}
+                      onClick={() => router.push(`/product/${product.id}`)}
                       className="w-12 h-12 min-w-[48px] min-h-[48px] bg-primary text-white rounded-xl flex items-center justify-center hover:bg-primary-container transition-all group/btn shadow-md shadow-primary/20"
                       aria-label={`View ${product.name}`}
                     >
@@ -179,7 +181,7 @@ export const Shop = () => {
             </div>
             <div className="space-y-2">
               <h2 className="text-2xl font-black font-headline">No gear found</h2>
-              <p className="text-slate-500">Try adjusting your search or filters to find what you're looking for.</p>
+              <p className="text-slate-500">Try adjusting your search or filters to find what you&apos;re looking for.</p>
             </div>
             <button 
               onClick={() => {
