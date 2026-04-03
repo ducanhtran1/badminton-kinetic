@@ -1,36 +1,20 @@
-"use client";
-
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { Bolt, Chrome, Apple } from "lucide-react";
 import { motion } from "motion/react";
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 
 export const Login = () => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("login");
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push("/");
+    navigate("/");
   };
 
   return (
-    <main className="min-h-screen flex flex-col md:flex-row bg-background">
-      {/* Mobile: compact hero strip */}
-      <div className="md:hidden relative h-44 w-full overflow-hidden bg-slate-900">
-        <img
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-70"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7n6G87-9SCwXOtQSiCg-kdoA0Lfl78WdOu7gzKdApE4VBaa3gwFIesWPD93OqBTKtDha16xIXmQIbnqLezQhBuFjTpWRqt9qwC_i-3FtcSz4xCqklJ8Ng6SV9s5INO46mJgSsVykhznPfuIqXV03JzyNTMTdHDb9h_kq2qCd-HkuYDu_HQspg06npD7oPYegY04xPRphxZeRMktJRBRMt-jW1HIGmc-0PX8K0c8BLyFWZ4laM8lSbzlnES9rAGHnWiSvtuH-OnSw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-slate-900/40 to-transparent" />
-        <div className="absolute bottom-4 left-6 right-6">
-          <p className="font-headline font-black text-2xl text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.65)]">KINETIC</p>
-          <p className="text-white/85 text-sm font-medium">Sign in to your locker</p>
-        </div>
-      </div>
-
+    <main className="min-h-screen flex flex-col md:flex-row bg-surface">
       {/* Left Side: Aesthetic Imagery (Kinetic Branding) */}
       <div className="hidden md:flex md:w-1/2 relative overflow-hidden bg-primary items-center justify-center">
         <div className="absolute inset-0 z-0">
@@ -67,22 +51,26 @@ export const Login = () => {
       </div>
 
       {/* Right Side: Auth Forms */}
-      <div className="flex-1 flex flex-col justify-center items-center px-6 py-10 md:py-12">
+      <div className="flex-1 flex flex-col justify-center items-center px-6 py-12">
         <div className="w-full max-w-md">
           {/* Logo for Mobile */}
+          <div className="md:hidden mb-12 text-center">
+            <span className="text-3xl font-headline font-black italic tracking-tighter text-primary">KINETIC</span>
+          </div>
+
           {/* Header */}
           <div className="mb-10 text-left">
-            <h2 className="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2">Welcome Back</h2>
-            <p className="text-on-surface-variant font-medium">Access your high-performance locker.</p>
+            <h2 className="font-headline text-4xl font-black tracking-tighter text-on-surface mb-2 uppercase italic">Welcome Back</h2>
+            <p className="text-on-surface-variant font-bold text-sm uppercase tracking-widest opacity-70">Access your high-performance locker.</p>
           </div>
 
           {/* Tabbed Navigation */}
-          <div className="flex p-1 bg-surface-container-low rounded-xl mb-8">
+          <div className="flex p-1.5 bg-surface-container-low rounded-2xl mb-8 border border-black/5">
             <button 
               onClick={() => setActiveTab("login")}
               className={cn(
-                "flex-1 py-3 text-sm font-bold rounded-lg transition-all",
-                activeTab === "login" ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"
+                "flex-1 py-3.5 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300",
+                activeTab === "login" ? "bg-white shadow-kinetic text-primary" : "text-on-surface-variant hover:text-on-surface"
               )}
             >
               Login
@@ -90,8 +78,8 @@ export const Login = () => {
             <button 
               onClick={() => setActiveTab("register")}
               className={cn(
-                "flex-1 py-3 text-sm font-bold rounded-lg transition-all",
-                activeTab === "register" ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"
+                "flex-1 py-3.5 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300",
+                activeTab === "register" ? "bg-white shadow-kinetic text-primary" : "text-on-surface-variant hover:text-on-surface"
               )}
             >
               Register
@@ -101,40 +89,38 @@ export const Login = () => {
           {/* Form */}
           <form className="space-y-6" onSubmit={handleLogin}>
             <div className="space-y-2">
-              <label className="block text-xs font-black tracking-widest text-on-surface-variant uppercase" htmlFor="identifier">Email or Phone</label>
+              <label className="block text-[10px] font-black tracking-[0.2em] text-on-surface-variant uppercase ml-1" htmlFor="identifier">Email or Phone</label>
               <div className="relative group">
                 <input 
-                  className="w-full bg-white border border-slate-200/90 focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all px-4 py-4 rounded-xl placeholder:text-outline/50 min-h-[52px]" 
+                  className="w-full bg-surface-container-low border-2 border-transparent focus:border-primary transition-all px-5 py-4 rounded-xl placeholder:text-outline/30 font-bold outline-none" 
                   id="identifier" 
                   placeholder="pro@kinetic.com" 
                   type="text" 
                   required
                 />
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-focus-within:w-full"></div>
               </div>
             </div>
             <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <label className="block text-xs font-black tracking-widest text-on-surface-variant uppercase" htmlFor="password">Password</label>
-                <button type="button" className="text-xs font-bold text-primary hover:underline">Forgot?</button>
+              <div className="flex justify-between items-center px-1">
+                <label className="block text-[10px] font-black tracking-[0.2em] text-on-surface-variant uppercase" htmlFor="password">Password</label>
+                <button type="button" className="text-[10px] font-black text-primary hover:underline uppercase tracking-widest">Forgot?</button>
               </div>
               <div className="relative group">
                 <input 
-                  className="w-full bg-white border border-slate-200/90 focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all px-4 py-4 rounded-xl placeholder:text-outline/50 min-h-[52px]" 
+                  className="w-full bg-surface-container-low border-2 border-transparent focus:border-primary transition-all px-5 py-4 rounded-xl placeholder:text-outline/30 font-bold outline-none" 
                   id="password" 
                   placeholder="••••••••" 
                   type="password" 
                   required
                 />
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-focus-within:w-full"></div>
               </div>
             </div>
             <button 
-              className="btn-kinetic w-full py-5 text-base" 
+              className="btn-kinetic w-full py-5 shadow-kinetic-hover" 
               type="submit"
             >
               <span>LAUNCH SESSION</span>
-              <Bolt size={22} strokeWidth={2.25} />
+              <Bolt size={20} className="animate-pulse" />
             </button>
           </form>
 

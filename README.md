@@ -16,7 +16,5 @@ View your app in AI Studio: https://ai.studio/apps/1ef5898c-33ca-48df-817d-43133
 1. Install dependencies:
    `npm install`
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. (Optional) Set `NEXT_PUBLIC_SITE_URL` in `.env.local` to your production URL for SEO (canonical URLs, sitemap, Open Graph).
-4. Run the app:
+3. Run the app:
    `npm run dev`
-5. Production build: `npm run build` then `npm start`

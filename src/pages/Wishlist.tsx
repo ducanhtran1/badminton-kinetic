@@ -1,23 +1,21 @@
-"use client";
-
 import React from "react";
-import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { Heart, ShoppingCart, Trash2, ChevronRight, ArrowLeft } from "lucide-react";
-import { PRODUCTS } from "@/constants";
+import { useNavigate } from "react-router-dom";
+import { PRODUCTS } from "../constants";
 
 export const Wishlist = () => {
-  const router = useRouter();
+  const navigate = useNavigate();
   // Mock wishlist data
   const wishlistItems = PRODUCTS.slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-background p-6 pb-32">
+    <div className="min-h-screen bg-surface-container-lowest p-6 pb-32">
       <div className="max-w-5xl mx-auto space-y-12">
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-6">
             <button 
-              onClick={() => router.back()}
+              onClick={() => navigate(-1)}
               className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-primary hover:text-white transition-all"
             >
               <ArrowLeft size={20} />
@@ -64,7 +62,7 @@ export const Wishlist = () => {
 
                 <div className="flex flex-col gap-3 w-full md:w-auto">
                   <button 
-                    onClick={() => router.push(`/product/${item.id}`)}
+                    onClick={() => navigate(`/product/${item.id}`)}
                     className="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-primary transition-all group/btn"
                   >
                     <ShoppingCart size={18} />
@@ -88,7 +86,7 @@ export const Wishlist = () => {
                 <p className="text-slate-500">Explore our collection and save your favorite gear.</p>
               </div>
               <button 
-                onClick={() => router.push("/shop")}
+                onClick={() => navigate("/shop")}
                 className="bg-primary text-white px-8 py-4 rounded-2xl font-bold hover:bg-primary-container transition-all"
               >
                 Go Shopping
@@ -105,7 +103,7 @@ export const Wishlist = () => {
               <p className="text-slate-400 font-medium max-w-md">Complete your purchase now and get free express shipping on your entire wishlist.</p>
             </div>
             <button 
-              onClick={() => router.push("/checkout")}
+              onClick={() => navigate("/checkout")}
               className="bg-primary text-white px-12 py-6 rounded-2xl font-black text-lg hover:scale-105 transition-transform shadow-2xl shadow-primary/20 relative z-10"
             >
               Checkout All Items

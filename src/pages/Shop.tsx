@@ -1,18 +1,16 @@
-"use client";
-
 import React, { useState, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { Search, SlidersHorizontal, Star, ShoppingCart, ArrowUpDown, ChevronRight, Zap } from "lucide-react";
-import { PRODUCTS, CATEGORIES } from "@/constants";
+import { PRODUCTS, CATEGORIES } from "../constants";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 
 export const Shop = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Gear");
   const [sortBy, setSortBy] = useState("featured");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter((product) => {
@@ -28,7 +26,7 @@ export const Shop = () => {
   }, [searchQuery, selectedCategory, sortBy]);
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-surface-container-lowest pb-32">
       {/* Shop Hero */}
       <section className="relative h-[40vh] bg-slate-900 flex items-center px-6 overflow-hidden">
         <div className="absolute inset-0 opacity-40">
@@ -52,13 +50,13 @@ export const Shop = () => {
 
       <div className="max-w-screen-xl mx-auto px-6 -mt-12 relative z-20">
         {/* Search and Filter Bar */}
-        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-[var(--shadow-card)] flex flex-col md:flex-row gap-4 items-center">
+        <div className="bg-white p-4 rounded-3xl shadow-2xl flex flex-col md:flex-row gap-4 items-center">
           <div className="flex-1 w-full relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
             <input 
               type="text" 
               placeholder="Search by model, tech, or category..." 
-              className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-xl border-none focus:ring-2 focus:ring-primary font-bold text-slate-700 min-h-[52px]"
+              className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-primary font-bold text-slate-700"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -67,7 +65,7 @@ export const Shop = () => {
             <button 
               onClick={() => setIsFilterOpen(!isFilterOpen)}
               className={cn(
-                "flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-bold transition-all min-h-[52px]",
+                "flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-bold transition-all",
                 isFilterOpen ? "bg-primary text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
               )}
             >
@@ -76,7 +74,7 @@ export const Shop = () => {
             </button>
             <div className="relative flex-1 md:flex-none">
               <select 
-                className="w-full appearance-none bg-slate-100 text-slate-600 px-6 py-4 pr-12 rounded-xl font-bold border-none focus:ring-2 focus:ring-primary cursor-pointer min-h-[52px]"
+                className="w-full appearance-none bg-slate-100 text-slate-600 px-6 py-4 pr-12 rounded-2xl font-bold border-none focus:ring-2 focus:ring-primary cursor-pointer"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
               >
@@ -119,9 +117,9 @@ export const Shop = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ delay: idx * 0.05 }}
-                className="group card-kinetic p-6 flex flex-col h-full"
+                className="group card-kinetic p-6"
               >
-                <div className="relative aspect-square mb-5 overflow-hidden rounded-xl bg-slate-50 ring-1 ring-slate-200/80">
+                <div className="relative aspect-square mb-6 overflow-hidden rounded-3xl bg-slate-50">
                   <img 
                     src={product.image} 
                     alt={product.name} 
@@ -143,27 +141,24 @@ export const Shop = () => {
                   </button>
                 </div>
 
-                <div className="space-y-3 flex flex-col flex-1">
-                  <div className="space-y-2">
-                    <h3 className="font-headline font-black text-xl md:text-2xl leading-snug tracking-tight group-hover:text-primary transition-colors min-h-[3.25rem] flex items-start">
+                <div className="space-y-4">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-1 text-tertiary">
+                      <Star size={14} fill="currentColor" />
+                      <span className="text-xs font-bold">{product.rating || "4.5"}</span>
+                      <span className="text-slate-400 text-xs font-medium">({product.reviewsCount || "120"})</span>
+                    </div>
+                    <h3 className="font-headline font-black text-xl leading-tight group-hover:text-primary transition-colors h-14 flex items-center">
                       {product.name}
                     </h3>
-                    {product.description && (
-                      <p className="text-muted-secondary line-clamp-2">{product.description}</p>
-                    )}
-                    <div className="flex items-center gap-1.5 text-tertiary">
-                      <Star size={15} fill="currentColor" strokeWidth={0} className="shrink-0" />
-                      <span className="text-sm font-bold tabular-nums">{product.rating || "4.5"}</span>
-                      <span className="text-xs text-on-surface-variant/70 font-medium">({product.reviewsCount || "120"} reviews)</span>
-                    </div>
+                    <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">{product.category}</p>
                   </div>
 
-                  <div className="flex items-center justify-between pt-2 mt-auto">
-                    <p className="text-2xl font-black font-headline text-tertiary tabular-nums">${product.price}</p>
+                  <div className="flex items-center justify-between pt-3 border-t border-black/5">
+                    <p className="text-2xl font-black text-tertiary">${product.price}</p>
                     <button 
-                      onClick={() => router.push(`/product/${product.id}`)}
-                      className="w-12 h-12 min-w-[48px] min-h-[48px] bg-primary text-white rounded-xl flex items-center justify-center hover:bg-primary-container transition-all group/btn shadow-md shadow-primary/20"
-                      aria-label={`View ${product.name}`}
+                      onClick={() => navigate(`/product/${product.id}`)}
+                      className="w-12 h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center hover:bg-primary transition-all group/btn shadow-lg"
                     >
                       <ChevronRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
                     </button>
@@ -181,7 +176,7 @@ export const Shop = () => {
             </div>
             <div className="space-y-2">
               <h2 className="text-2xl font-black font-headline">No gear found</h2>
-              <p className="text-slate-500">Try adjusting your search or filters to find what you&apos;re looking for.</p>
+              <p className="text-slate-500">Try adjusting your search or filters to find what you're looking for.</p>
             </div>
             <button 
               onClick={() => {

@@ -1,10 +1,8 @@
-"use client";
-
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronRight, ChevronLeft, Bolt, Target, Zap, Trophy } from "lucide-react";
-import { PRODUCTS } from "@/constants";
+import { useNavigate } from "react-router-dom";
+import { PRODUCTS } from "../constants";
 
 const steps = [
   {
@@ -40,7 +38,7 @@ export const RacketFinder = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [result, setResult] = useState<any>(null);
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const handleOptionSelect = (value: string) => {
     const newAnswers = [...answers, value];
@@ -72,22 +70,19 @@ export const RacketFinder = () => {
             </div>
 
             <div className="grid gap-4">
-              {steps[currentStep].options.map((option) => {
-                const OptionIcon = "icon" in option ? option.icon : undefined;
-                return (
+              {steps[currentStep].options.map((option) => (
                 <button
                   key={option.value}
                   onClick={() => handleOptionSelect(option.value)}
                   className="group flex items-center justify-between p-6 bg-white rounded-2xl border-2 border-transparent hover:border-primary hover:shadow-xl transition-all text-left"
                 >
                   <div className="flex items-center gap-4">
-                    {OptionIcon ? <OptionIcon className="text-primary group-hover:scale-110 transition-transform" /> : null}
+                    {option.icon && <option.icon className="text-primary group-hover:scale-110 transition-transform" />}
                     <span className="font-bold text-lg">{option.label}</span>
                   </div>
                   <ChevronRight size={20} className="text-slate-300 group-hover:text-primary group-hover:translate-x-1 transition-all" />
                 </button>
-                );
-              })}
+              ))}
             </div>
 
             {currentStep > 0 && (
@@ -123,7 +118,7 @@ export const RacketFinder = () => {
 
             <div className="grid grid-cols-2 gap-4">
               <button 
-                onClick={() => router.push(`/product/${result.id}`)}
+                onClick={() => navigate(`/product/${result.id}`)}
                 className="bg-primary text-white py-4 rounded-xl font-bold hover:bg-primary-container transition-colors"
               >
                 View Details
